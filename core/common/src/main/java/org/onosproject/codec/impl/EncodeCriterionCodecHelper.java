@@ -133,10 +133,13 @@ public final class EncodeCriterionCodecHelper {
         formatMap.put(Criterion.Type.ODU_SIGID, new FormatOduSignalId());
         formatMap.put(Criterion.Type.ODU_SIGTYPE, new FormatOduSignalType());
         formatMap.put(Criterion.Type.PROTOCOL_INDEPENDENT, new FormatProtocolIndependent());
+        // Test ARP_TPA
+        formatMap.put(Criterion.Type.ARP_TPA, new FormatIp());
+        formatMap.put(Criterion.Type.ARP_SPA, new FormatIp());
         // Currently unimplemented
         formatMap.put(Criterion.Type.ARP_OP, new FormatUnknown());
-        formatMap.put(Criterion.Type.ARP_SPA, new FormatUnknown());
-        formatMap.put(Criterion.Type.ARP_TPA, new FormatUnknown());
+        //formatMap.put(Criterion.Type.ARP_SPA, new FormatUnknown());
+        //formatMap.put(Criterion.Type.ARP_TPA, new FormatUnknown());
         formatMap.put(Criterion.Type.ARP_SHA, new FormatUnknown());
         formatMap.put(Criterion.Type.ARP_THA, new FormatUnknown());
         formatMap.put(Criterion.Type.MPLS_TC, new FormatUnknown());
@@ -148,13 +151,6 @@ public final class EncodeCriterionCodecHelper {
         formatMap.put(Criterion.Type.PACKET_TYPE, new FormatUnknown());
         formatMap.put(Criterion.Type.EXTENSION, new FormatUnknown());
         formatMap.put(Criterion.Type.ETH_SRC_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.TCP_SRC_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.TCP_DST_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.UDP_SRC_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.UDP_DST_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.SCTP_SRC_MASKED, new FormatUnknown());
-        formatMap.put(Criterion.Type.SCTP_DST_MASKED, new FormatUnknown());
-
     }
 
     private interface CriterionTypeFormatter {

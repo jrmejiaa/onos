@@ -17,12 +17,7 @@ package org.onosproject.codec.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.onlab.packet.Ip6Address;
-import org.onlab.packet.IpPrefix;
-import org.onlab.packet.MacAddress;
-import org.onlab.packet.MplsLabel;
-import org.onlab.packet.TpPort;
-import org.onlab.packet.VlanId;
+import org.onlab.packet.*;
 import org.onlab.util.HexString;
 import org.onosproject.net.ChannelSpacing;
 import org.onosproject.net.GridType;
@@ -114,6 +109,7 @@ public final class DecodeCriterionCodecHelper {
         decoderMap.put(Criterion.Type.ODU_SIGID.name(), new OduSigIdDecoder());
         decoderMap.put(Criterion.Type.ODU_SIGTYPE.name(), new OduSigTypeDecoder());
         decoderMap.put(Criterion.Type.PROTOCOL_INDEPENDENT.name(), new PiDecoder());
+        decoderMap.put(Criterion.Type.ARP_TPA.name(), new ArpTpaDecoder());
     }
 
     private class EthTypeDecoder implements CriterionDecoder {
@@ -293,6 +289,15 @@ public final class DecodeCriterionCodecHelper {
             String ip = nullIsIllegal(json.get(CriterionCodec.IP),
                     CriterionCodec.IP + MISSING_MEMBER_MESSAGE).asText();
             return Criteria.matchIPv6Dst(IpPrefix.valueOf(ip));
+        }
+    }
+
+    private class ArpTpaDecoder implements CriterionDecoder {
+        @Override
+        public Criterion decodeCriterion(ObjectNode json) {
+            String ip = nullIsIllegal(json.get(CriterionCodec.IP),
+                    CriterionCodec.IP + MISSING_MEMBER_MESSAGE).asText();
+            return Criteria.matchArpTpa(Ip4Address.valueOf(ip));
         }
     }
 
